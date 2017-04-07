@@ -20,14 +20,10 @@ public class Pj : MonoBehaviour {
     {
         rb = GetComponent<Rigidbody2D>();
         _platforms = GameObject.FindGameObjectsWithTag("Plataforma");
-
-        
     }
     void Start()
     {
         AddToList();
-        print(_platforms.Length);
-        print(platforms.Count);
     }
     void Update()
     {
