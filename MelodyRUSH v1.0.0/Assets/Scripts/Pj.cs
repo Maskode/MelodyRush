@@ -7,6 +7,7 @@ using System.Collections.Generic;
 public class Pj : MonoBehaviour {
 
     Rigidbody2D rb;
+    Animator anim;
     public GameObject[] _platforms;
     List <GameObject> platforms = new List<GameObject>();
     public float jumpForce = 12f;
@@ -19,6 +20,7 @@ public class Pj : MonoBehaviour {
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
         _platforms = GameObject.FindGameObjectsWithTag("Plataforma");
     }
     void Start()
@@ -97,6 +99,7 @@ public class Pj : MonoBehaviour {
         if (other.CompareTag("Jumper"))
         {
             rb.velocity = new Vector2(rb.velocity.x, 0);
+            anim.SetBool("jump", true);
             Jump();
         }
         if (other.CompareTag("GravityInverter"))
@@ -109,6 +112,13 @@ public class Pj : MonoBehaviour {
         {
             rb.velocity = new Vector2(0, rb.velocity.y);
             direction *= -1;
+        }
+    }
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Plataforma")||other.gameObject.CompareTag("Floor"))
+        {
+            anim.SetBool("jump", false);
         }
     }
 }
