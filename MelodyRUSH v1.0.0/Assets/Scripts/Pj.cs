@@ -8,6 +8,8 @@ public class Pj : MonoBehaviour {
 
     Rigidbody2D rb;
     Animator anim;
+    Transform feets;
+    Collider2D col;
     public GameObject[] _platforms;
     List <GameObject> platforms = new List<GameObject>();
     public float jumpForce = 12f;
@@ -17,46 +19,58 @@ public class Pj : MonoBehaviour {
     string label = "nada";
     int direction = 1;
     int gravityDirection = 1;
+    int layer;
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        feets = transform.FindChild("Feets");
         _platforms = GameObject.FindGameObjectsWithTag("Plataforma");
     }
     void Start()
     {
         AddToList();
+        layer = 1 << 8;
     }
     void Update()
     {
+        col = Physics2D.OverlapCircle(feets.position, 0.15f,layer);
+        if (col)
         {
-            if (Input.GetKeyDown(KeyCode.A))
+            if (col.gameObject.CompareTag("Floor") && anim.GetBool("run") == false)
             {
-                label = "verde";
-                CheckKey();
-            }
-            if (Input.GetKeyDown(KeyCode.S))
-            {
-                label = "rojo";
-                CheckKey();
-            }
-            if (Input.GetKeyDown(KeyCode.D))
-            {
-                label = "amarillo";
-                CheckKey();
-            }
-            if (Input.GetKeyDown(KeyCode.F))
-            {
-                label = "azul";
-                CheckKey();
-            }
-            if (Input.GetKeyDown(KeyCode.G))
-            {
-                label = "naranja";
-                CheckKey();
+                anim.SetBool("run", true);
             }
         }
-
+        else
+        {
+            anim.SetBool("run", false);
+        }
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            label = "verde";
+            CheckKey();
+        }
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            label = "rojo";
+            CheckKey();
+        }
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            label = "amarillo";
+            CheckKey();
+        }
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            label = "azul";
+            CheckKey();
+        }
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            label = "naranja";
+            CheckKey();
+        }
     }
     void CheckKey()
     {
@@ -118,12 +132,5 @@ public class Pj : MonoBehaviour {
     public void ResetTrigger()
     {
         anim.ResetTrigger("jump");
-    }
-    void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.gameObject.CompareTag("Floor")&&anim.GetBool("run")==false)
-        {
-            anim.SetBool("run", true);
-        }
     }
 }
