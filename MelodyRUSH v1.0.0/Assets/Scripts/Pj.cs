@@ -65,7 +65,7 @@ public class Pj : MonoBehaviour {
     }
     public void addCounter()
     {
-        if (counter < _platforms.Length - 1)
+        if (counter < _platforms.Length-1)
         {
             counter++;
         }
@@ -99,7 +99,8 @@ public class Pj : MonoBehaviour {
         if (other.CompareTag("Jumper"))
         {
             rb.velocity = new Vector2(rb.velocity.x, 0);
-            anim.SetBool("jump", true);
+            anim.SetTrigger("jump");
+            anim.SetBool("run", false);
             Jump();
         }
         if (other.CompareTag("GravityInverter"))
@@ -114,11 +115,15 @@ public class Pj : MonoBehaviour {
             direction *= -1;
         }
     }
+    public void ResetTrigger()
+    {
+        anim.ResetTrigger("jump");
+    }
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Plataforma")||other.gameObject.CompareTag("Floor"))
+        if (other.gameObject.CompareTag("Floor")&&anim.GetBool("run")==false)
         {
-            anim.SetBool("jump", false);
+            anim.SetBool("run", true);
         }
     }
 }
