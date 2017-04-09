@@ -16,7 +16,10 @@ public class Platform : MonoBehaviour {
     { 
         foreach (Transform t in this.transform)
         {
-            t.gameObject.SetActive(false);
+            if (t.gameObject.name != "invPlat")
+            {
+                t.gameObject.SetActive(false);
+            }
         }
     }
     void OnBecameVisible()
