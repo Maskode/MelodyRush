@@ -46,15 +46,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: player
-    uniqueID: 3517110061
-    locked: 0
-  - name: items
-    uniqueID: 1074345761
+  - name: background
+    uniqueID: 3562453901
     locked: 0
   - name: platforms
     uniqueID: 1156689911
     locked: 0
-  - name: background
-    uniqueID: 3562453901
+  - name: items
+    uniqueID: 1074345761
+    locked: 0
+  - name: player
+    uniqueID: 3517110061
+    locked: 0
+  - name: PhysicsObjects
+    uniqueID: 3625846447
     locked: 0

@@ -17,8 +17,9 @@ public class Pj : MonoBehaviour {
     int counter = 0;
     int assign = 0;
     string label = "nada";
-    int direction = 1;
-    int gravityDirection = 1;
+    public int direction = 1;
+    public int gravityDirection = 1;
+    public Vector2 speedReference;
     int layer;
     void Awake()
     {
@@ -102,6 +103,7 @@ public class Pj : MonoBehaviour {
     void FixedUpdate()
     {
         rb.velocity = new Vector2(speed * direction, rb.velocity.y);
+        speedReference = rb.velocity;
     }
 
     void Jump()
