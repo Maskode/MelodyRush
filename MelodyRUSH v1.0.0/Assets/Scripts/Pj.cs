@@ -38,7 +38,7 @@ public class Pj : MonoBehaviour {
         col = Physics2D.OverlapCircle(feets.position, 0.15f,layer);
         if (col)
         {
-            if (col.gameObject.CompareTag("Floor") && anim.GetBool("run") == false)
+            if (anim.GetBool("run") == false)
             {
                 anim.SetBool("run", true);
             }

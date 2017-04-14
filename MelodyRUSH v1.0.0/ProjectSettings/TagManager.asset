@@ -9,6 +9,9 @@ TagManager:
   - GravityInverter
   - DirectionInverter
   - Floor
+  - BgFrontLayer
+  - BgMidLayer
+  - BgSky
   layers:
   - Default
   - TransparentFX
