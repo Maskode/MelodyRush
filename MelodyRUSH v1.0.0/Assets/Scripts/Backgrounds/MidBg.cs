@@ -13,6 +13,9 @@ public class MidBg : MonoBehaviour {
     }
     void FixedUpdate()
     {
-        rb.velocity = target.speedReference/2;
+        if (rb != null)
+            rb.velocity = target.speedReference / 2;
+        else
+            Awake();
     }
 }
