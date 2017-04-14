@@ -13,10 +13,6 @@ public class ScrollBg : MonoBehaviour {
         playerReference = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
-	void Start () {
-	
-	}
-	
 	void Update () {
 	    if (playerReference.position.x>=transform.position.x)
         {
